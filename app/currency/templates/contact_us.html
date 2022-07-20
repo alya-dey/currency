@@ -1,0 +1,23 @@
+{%  extends 'base.html' %}
+
+{% block main_content %}
+    <table>
+        <th scope="col">ID</th>
+        <th scope="col">Email from</th>
+        <th scope="col">Email to</th>
+        <th scope="col">Subject</th>
+        <th scope="col">Message</th>
+        <th scope="col">Created</th>
+        {% for contact in contact_us_list %}
+            <tr>
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.email_from }}</td>
+                <td>{{ contact.email_to }}</td>
+                <td>{{ contact.subject }}</td>
+                <td>{{ contact.message }}</td>
+                <td>{{ contact.created }}</td>
+            <tr/>
+        {% endfor %}
+    </table>
+
+{% endblock main_content %}

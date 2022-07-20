@@ -1,0 +1,17 @@
+{%  extends 'base.html' %}
+
+{% block main_content %}
+    <table>
+        <th scope="col">ID</th>
+        <th scope="col">Sale</th>
+        <th scope="col">Buy</th>
+        {% for rate in rate_list %}
+            <tr>
+                <td>{{ rate.id }}</td>
+                <td>{{ rate.sale }}</td>
+                <td>{{ rate.buy }}</td>
+            <tr/>
+        {% endfor %}
+    </table>
+
+{% endblock main_content %}
