@@ -1,6 +1,7 @@
 {%  extends 'base.html' %}
 
 {% block main_content %}
+    <div><a href="/rate/create/">Create new rate</a></div>
     <table>
         <th scope="col">ID</th>
         <th scope="col">Sale</th>
@@ -10,6 +11,9 @@
                 <td>{{ rate.id }}</td>
                 <td>{{ rate.sale }}</td>
                 <td>{{ rate.buy }}</td>
+                    <td><a href="/rate/details/{{ rate.id }}">view details</a></td>
+                    <td><a href="/rate/update/{{ rate.id }}">edit</a></td>
+                    <td><a href="/rate/delete/{{ rate.id }}">delete</a></td>
             <tr/>
         {% endfor %}
     </table>
