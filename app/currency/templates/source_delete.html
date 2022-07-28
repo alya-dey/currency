@@ -3,7 +3,7 @@
 {% block main_content %}
     Source Delete
 
-    <div>Delete source {{ instance.id }}</div>
+    <div>Delete source {{ object.id }}</div>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Delete</button>

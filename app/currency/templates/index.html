@@ -5,15 +5,17 @@
     <div>Currency Exchange Project</div>
 
     <div>
-        Currency Rates List: <a href="/rate/list">Click Here</a>
+        Currency Rates List: <a href="{% url 'currency:rate_list' %}">Click Here</a>
+    </div>
+
+    <div>Rate count: {{ rate_count }}</div>
+
+    <div>
+        Contacts Responses List: <a href="{% url 'currency:contacts_responses' %}">Click Here</a>
     </div>
 
     <div>
-        Contacts Responses List: <a href="/contacts-responses">Click Here</a>
-    </div>
-
-    <div>
-        Source List: <a href="/source/list/">Click Here</a>
+        Source List: <a href="{% url 'currency:source_list' %}">Click Here</a>
     </div>
 
 {% endblock main_content %}
