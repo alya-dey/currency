@@ -1,0 +1,12 @@
+{%  extends 'base.html' %}
+
+{% block main_content %}
+    Source Delete
+
+    <div>Delete source {{ instance.id }}</div>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+{% endblock main_content %}
