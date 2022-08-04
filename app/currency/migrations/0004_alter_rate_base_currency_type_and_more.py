@@ -13,11 +13,13 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='rate',
             name='base_currency_type',
-            field=models.CharField(choices=[('UAH', 'Hrivna'), ('USD', 'Dollar'), ('EUR', 'Euro'), ('BTC', 'BitCoin')], default='USD', max_length=3),
+            field=models.CharField(choices=[('UAH', 'Hrivna'), ('USD', 'Dollar'), ('EUR', 'Euro'), ('BTC', 'BitCoin')],
+                                   default='USD', max_length=3),
         ),
         migrations.AlterField(
             model_name='rate',
             name='currency_type',
-            field=models.CharField(choices=[('UAH', 'Hrivna'), ('USD', 'Dollar'), ('EUR', 'Euro'), ('BTC', 'BitCoin')], max_length=3),
+            field=models.CharField(choices=[('UAH', 'Hrivna'), ('USD', 'Dollar'), ('EUR', 'Euro'), ('BTC', 'BitCoin')],
+                                   max_length=3),
         ),
     ]
