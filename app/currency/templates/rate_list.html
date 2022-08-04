@@ -2,15 +2,19 @@
 
 {% block main_content %}
     <div><a href="{% url 'currency:rate_create' %}">Create new rate</a></div>
-    <table>
+    <table border="1">
         <th scope="col">ID</th>
         <th scope="col">Sale</th>
         <th scope="col">Buy</th>
+        <th scope="col">Base type</th>
+        <th scope="col">Type</th>
         {% for rate in rate_list %}
             <tr>
                 <td>{{ rate.id }}</td>
                 <td>{{ rate.sale }}</td>
                 <td>{{ rate.buy }}</td>
+                <td>{{ rate.get_base_currency_type_display }}</td>
+                <td>{{ rate.get_currency_type_display }}</td>
                     <td><a href="{% url 'currency:rate_details' rate.id %}">view details</a></td>
                     <td><a href="{% url 'currency:rate_update' rate.id %}">edit</a></td>
                     <td><a href="{% url 'currency:rate_delete' rate.id %}">delete</a></td>
