@@ -5,7 +5,10 @@ app_name = 'currency'
 
 
 urlpatterns = [
-    path('contacts-responses/', views.ContactUsView.as_view(), name='contacts_responses'),
+    path('', views.IndexView.as_view(), name='index'),
+
+    path('contactus/list/', views.ContactUsView.as_view(), name='contactus'),
+    path('contactus/create/', views.ContactUsCreateView.as_view(), name='contactus_create'),
 
     path('rate/list/', views.RateListView.as_view(), name='rate_list'),
     path('rate/create/', views.RateCreateView.as_view(), name='rate_create'),

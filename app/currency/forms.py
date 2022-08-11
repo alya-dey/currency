@@ -1,5 +1,5 @@
 from django import forms
-from currency.models import Rate, Source
+from currency.models import Rate, Source, ContactUs
 
 
 class RateForm(forms.ModelForm):
