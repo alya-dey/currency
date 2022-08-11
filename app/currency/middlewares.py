@@ -18,12 +18,12 @@ class SimpleMiddleware:
 
         end = time()
         response_time = end - start
-        log_object = ResponseLog.objects.create(
+        ResponseLog.objects.create(
             response_time=response_time,
             request_method=request_method,
             query_params=query_params,
             ip=ip,
             path=path,
         )
-        print(log_object)
+
         return response
