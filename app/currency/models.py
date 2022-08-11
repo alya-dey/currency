@@ -34,4 +34,3 @@ class ResponseLog(models.Model):
     query_params = models.CharField(max_length=1000)
     ip = models.CharField(max_length=255)
     path = models.CharField(max_length=255)
-

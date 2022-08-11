@@ -25,4 +25,5 @@ class SimpleMiddleware:
             ip=ip,
             path=path,
         )
+        print(log_object)
         return response
