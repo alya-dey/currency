@@ -1,6 +1,7 @@
-{%  extends 'base.html' %}
+{% extends 'base.html' %}
 
 {% block main_content %}
+    <div><a href="{% url 'currency:contactus_create' %}">Contact Us!</a></div>
     <table>
         <th scope="col">ID</th>
         <th scope="col">Email from</th>
