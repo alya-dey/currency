@@ -16,8 +16,10 @@
                 <td>{{ rate.get_base_currency_type_display }}</td>
                 <td>{{ rate.get_currency_type_display }}</td>
                     <td><a href="{% url 'currency:rate_details' rate.id %}">view details</a></td>
-                    <td><a href="{% url 'currency:rate_update' rate.id %}">edit</a></td>
-                    <td><a href="{% url 'currency:rate_delete' rate.id %}">delete</a></td>
+                     {% if request.user.is_superuser %}
+                        <td><a href="{% url 'currency:rate_update' rate.id %}">edit</a></td>
+                        <td><a href="{% url 'currency:rate_delete' rate.id %}">delete</a></td>
+                     {% endif %}
             <tr/>
         {% endfor %}
     </table>

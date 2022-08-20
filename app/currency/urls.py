@@ -5,7 +5,6 @@ app_name = 'currency'
 
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
 
     path('contactus/list/', views.ContactUsView.as_view(), name='contactus'),
     path('contactus/create/', views.ContactUsCreateView.as_view(), name='contactus_create'),
@@ -20,4 +19,6 @@ urlpatterns = [
     path('source/create/', views.SourceCreateView.as_view(), name='source_create'),
     path('source/update/<int:pk>', views.SourceUpdateView.as_view(), name='source_update'),
     path('source/delete/<int:pk>', views.SourceDeleteView.as_view(), name='source_delete'),
+
+    path('my-profile/', views.UserProfileView.as_view(), name='my_profile'),
 ]
