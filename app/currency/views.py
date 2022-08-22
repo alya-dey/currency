@@ -3,6 +3,8 @@ from django.views import generic
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
 from django.conf import settings
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth import get_user_model
 
 from currency.models import ContactUs, Rate, Source
 from currency.forms import RateForm, SourceForm
@@ -53,7 +55,7 @@ class ContactUsCreateView(generic.CreateView):
         return response
 
 
-class RateListView(generic.ListView):
+class RateListView(LoginRequiredMixin, generic.ListView):
     queryset = Rate.objects.all()
     template_name = 'rate_list.html'
 
@@ -65,14 +67,24 @@ class RateCreateView(generic.CreateView):
     success_url = reverse_lazy('currency:rate_list')
 
 
-class RateUpdateView(generic.UpdateView):
+class RateUpdateView(UserPassesTestMixin, generic.UpdateView):
+
+    def test_func(self):
+        """only for superusers"""
+        return self.request.user.is_superuser
+
     queryset = Rate.objects.all()
     template_name = 'rate_update.html'
     form_class = RateForm
     success_url = reverse_lazy('currency:rate_list')
 
 
-class RateDeleteView(generic.DeleteView):
+class RateDeleteView(UserPassesTestMixin, generic.DeleteView):
+
+    def test_func(self):
+        """only for superusers"""
+        return self.request.user.is_superuser
+
     queryset = Rate.objects.all()
     template_name = 'rate_delete.html'
     success_url = reverse_lazy('currency:rate_list')
@@ -106,3 +118,16 @@ class SourceDeleteView(generic.DeleteView):
     queryset = Source.objects.all()
     template_name = 'source_delete.html'
     success_url = reverse_lazy('currency:source_list')
+
+
+class UserProfileView(LoginRequiredMixin, generic.UpdateView):
+    queryset = get_user_model().objects.all()
+    template_name = 'my_profile.html'
+    success_url = reverse_lazy('index')
+    fields = (
+        'first_name',
+        'last_name',
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user
