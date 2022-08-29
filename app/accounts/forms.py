@@ -3,7 +3,7 @@ import uuid
 from django import forms
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.core.mail import send_mail
 from django.urls import reverse
 
@@ -55,7 +55,7 @@ class SignUpForm(forms.ModelForm):
     def _send_activation_email(self):
         subject = 'Activate your account'
         body = f'''
-        Activation link: {settings.HTTP_SCHEMA}://{settings.DOMAIN}{reverse('accounts:user_activate', 
+        Activation link: {settings.HTTP_SCHEMA}://{settings.DOMAIN}{reverse('accounts:user_activate',
                                                                             args=(self.instance.username, ))}
         '''
 
