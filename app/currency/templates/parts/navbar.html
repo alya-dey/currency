@@ -4,10 +4,10 @@
 
     {% if request.user.is_authenticated %}
         {{ request.user.email }}
-        <a href="{% url 'currency:my_profile' %}">My Profile</a>
+        <a href="{% url 'accounts:my_profile' %}">My Profile</a>
         <a href="{% url 'logout' %}">LogOut</a>
     {% else %}
         <a href="{% url 'login' %}">LogIn</a>
-        <a href="#">SignUp</a>
+        <a href="{% url 'accounts:signup' %}">SignUp</a>
     {% endif %}
 </div>
