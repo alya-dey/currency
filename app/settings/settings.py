@@ -41,10 +41,11 @@ INSTALLED_APPS = [
 
     'django_extensions',
     'debug_toolbar',
-    'currency',
     'rangefilter',
     'silk',
     'import_export',
+    'currency',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -152,3 +153,8 @@ EMAIL_HOST_USER = 'testtestapp777@gmail.com'
 LOGIN_REDIRECT_URL = reverse_lazy('index')
 LOGOUT_REDIRECT_URL = reverse_lazy('currency:rate_list')
 LOGIN_URL = reverse_lazy('login')
+
+AUTH_USER_MODEL = 'accounts.User'
+
+HTTP_SCHEMA = 'http'  # https
+DOMAIN = 'localhost:8000'
