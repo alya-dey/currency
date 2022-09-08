@@ -1,3 +1,6 @@
+import csv
+import io
+
 from django.http import HttpResponse, HttpResponseRedirect  # noqa
 from django.views import generic
 from django.urls import reverse_lazy
@@ -56,7 +59,7 @@ class ContactUsCreateView(generic.CreateView):
 
 
 class RateListView(LoginRequiredMixin, generic.ListView):
-    queryset = Rate.objects.all()
+    queryset = Rate.objects.all().select_related('source')
     template_name = 'rate_list.html'
 
 
@@ -118,3 +121,40 @@ class SourceDeleteView(generic.DeleteView):
     queryset = Source.objects.all()
     template_name = 'source_delete.html'
     success_url = reverse_lazy('currency:source_list')
+
+
+class DownloadRateView(generic.View):
+
+    def get__(self, request):
+        with open('rate.csv', 'w', newline='') as csvfile:
+            spamwriter = csv.writer(csvfile)
+            headers = ['id', 'buy', 'sale']
+            spamwriter.writerow(headers)
+            for rate in Rate.objects.all():
+                row = [
+                    rate.id,
+                    rate.buy,
+                    rate.sale,
+                ]
+                spamwriter.writerow(row)
+
+        with open('rate.csv', 'r') as f:
+            file_data = f.read()
+
+        return HttpResponse(file_data, content_type='text/csv')
+
+    def get(self, request):
+        csvfile = io.StringIO()
+        spamwriter = csv.writer(csvfile)
+        headers = ['id', 'buy', 'sale']
+        spamwriter.writerow(headers)
+        for rate in Rate.objects.all():
+            row = [
+                rate.id,
+                rate.buy,
+                rate.sale,
+            ]
+            spamwriter.writerow(row)
+
+        csvfile.seek(0)
+        return HttpResponse(csvfile.read(), content_type='text/csv')
